@@ -1,0 +1,96 @@
+<div class="page">
+  <section class="container">
+    <img src="../../../assets/logos/trello-color.svg" alt="Trello logo" />
+    <h4>
+      {{ location === "signin" ? "Regístrarte" : "Inicia sessión" }} para
+      continuar
+    </h4>
+    <form [formGroup]="initialForm" (ngSubmit)="onSubmit()">
+      <input
+        [ngClass]="{
+          error: submitted && form['mail'].errors && !isMailFocused,
+        }"
+        (focus)="onFocus('email')"
+        (blur)="onBlur('email')"
+        type="text"
+        name="mail"
+        placeholder="Introducir tu correo electrónico"
+        required
+        formControlName="mail"
+      />
+      <div class="info">
+        @if(submitted && form['mail'].errors) {
+        <span class="error-text"
+          >Indica una dirección de correo electrónico</span
+        >
+        } @if(location === 'signin'){
+        <p>
+          Al registrarme, acepto las <a href="#">Condiciones del servicio</a> de
+          Atlassian Cloud y su <a href="#">Política de privacidad</a>.
+        </p>
+        }
+      </div>
+      <button [style]="isError()" type="submit">
+        {{ location === "signin" ? "Registrarse" : "Continuar" }}
+      </button>
+    </form>
+    <p>O continúa con:</p>
+    <div class="social-buttons">
+      <button>
+        <img
+          src="../../../assets/logos/Google__G__logo.png"
+          alt="Google logo"
+        /><span>Google</span>
+      </button>
+      <button>
+        <img
+          src="../../../assets/logos/Microsoft_logo.png"
+          alt="Microsoft logo"
+        /><span>Microsoft</span>
+      </button>
+      <button>
+        <img
+          src="../../../assets/logos/Apple_logo_black.png"
+          alt="Apple logo"
+        /><span>Apple</span>
+      </button>
+      <button>
+        <img src="../../../assets/logos/Slack_logo.png" alt="Slack logo" /><span
+          >Slack</span
+        >
+      </button>
+    </div>
+    <p>
+      @if(location !== 'signin'){
+      <a href="#">¿No puedes iniciar sesión?</a> |
+      <a routerLink="/signin">Crear una cuenta</a>
+      }@else{
+      <a [routerLink]="['/login']"
+        >¿Ya tienes una cuenta de Atlassian? Iniciar sesión</a
+      >
+      }
+    </p>
+    <div class="footer">
+      <span
+        ><img src="../../../assets/logos/Atlassian.svg" alt="Atlasian logo"
+      /></span>
+      <p>Una cuenta para Trello, Jira, Conluence y <a href="#">más</a>.</p>
+      @if(location !== 'signin'){
+      <p>Política de privacidad | Aviso de usuario</p>
+      }
+      <p>
+        Este sitio está protegido por reCAPTCHA y se aplican la
+        <a href="#">política de privacidad</a> y las
+        <a href="#">condiciones de servicio</a> de Google.
+      </p>
+    </div>
+  </section>
+  <img
+    src="../../../assets/images/auth-figure-left.svg"
+    alt="Trello image left"
+  />
+  <img
+    src="../../../assets/images/auth-figure-right.svg"
+    alt="Trello image right"
+  />
+</div>

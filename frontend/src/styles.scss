@@ -87,6 +87,33 @@ video {
   font: inherit;
   vertical-align: baseline;
 }
+a {
+  text-decoration: none;
+  text-underline-offset: none;
+  color: #0000ee;
+}
+
+a:visited {
+  text-decoration: none;
+  text-underline-offset: none;
+  color: #0000ee;
+}
+
+a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+* {
+  box-sizing: border-box;
+  text-overflow: ellipsis;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
 
 article,
 aside,
@@ -102,7 +129,19 @@ section {
   display: block;
 }
 body {
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    Segoe UI,
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Fira Sans,
+    Droid Sans,
+    Helvetica Neue,
+    sans-serif;
   line-height: 1;
+  height: 100%;
 }
 ol,
 ul {
@@ -125,7 +164,10 @@ table {
 }
 
 :root {
+  height: 100%;
+
   /* Colores primarios */
+
   --primary-color: #181c21;
   --primary-color-dark: #101204;
   --primary-color-light: #66b2ff;
@@ -133,7 +175,8 @@ table {
   --accent-color: #ffc107;
 
   /* Colores neutrales */
-  --white: ##579dff;
+
+  --white: #fff;
   --black: #000000;
   --gray-100: #f8f9fa;
   --gray-200: #e9ecef;
@@ -147,18 +190,36 @@ table {
 
   /* Botones */
 
-  --primary-color-button: #ffffff3d;
-  --hover-color-button: #a6c5e229;
+  --primary-color-btn: #0c66e4;
+  --primary-hover-color-btn: #0055cc;
+  --aouth-color-btn: var(--white);
+  --aouth-hover-color-btn: #091e4224;
+  --border-color-btn: #c1c7d0;
+  --color-btn: #172b4d;
+
+  /* Inputs */
+
+  --background-input-hovered: #f7f8f9;
+  --border-input: #091e4224;
+  --border-focused: #388bff;
 
   /* Colores de éxito, error, advertencia, información */
+
   --success-color: #28a745;
-  --error-color: #dc3545;
+  --error-color: #ae2e24;
+  --border-danger: #e2483d;
   --warning-color: #ffc107;
   --info-color: #17a2b8;
 }
 
 :root {
+  /* Text colors */
+
+  --text: #172b4d;
+  --text-subtle: #44546f;
+
   /* Tipografía */
+
   --font-family-base: "Roboto", sans-serif;
   --font-size-base: 16px;
   --font-size-sm: 14px;
@@ -168,6 +229,7 @@ table {
   --line-height-base: 1.5;
 
   /* Encabezados */
+
   --heading-font-family: "Roboto", sans-serif;
   --heading-font-weight: 700;
   --h1-font-size: 2.5rem;
@@ -180,13 +242,33 @@ table {
 
 :root {
   /* Margen y Padding */
-  --spacing-xs: 4px;
-  --spacing-sm: 8px;
-  --spacing-md: 16px;
-  --spacing-lg: 24px;
-  --spacing-xl: 32px;
+
+  --space-0: 0rem;
+  --space-025: 0.125rem;
+  --space-050: 0.25rem;
+  --space-075: 0.375rem;
+  --space-100: 0.5rem;
+  --space-150: 0.75rem;
+  --space-200: 1rem;
+  --space-250: 1.25rem;
+  --space-300: 1.5rem;
+  --space-400: 2rem;
+  --space-500: 2.5rem;
+  --space-600: 3rem;
+  --space-800: 4rem;
+  --space-1000: 5rem;
+  --space-negative-025: -0.125rem;
+  --space-negative-050: -0.25rem;
+  --space-negative-075: -0.375rem;
+  --space-negative-100: -0.5rem;
+  --space-negative-150: -0.75rem;
+  --space-negative-200: -1rem;
+  --space-negative-250: -1.25rem;
+  --space-negative-300: -1.5rem;
+  --space-negative-400: -2rem;
 
   /* Bordes */
+
   --border-radius-sm: 2px;
   --border-radius-md: 4px;
   --border-radius-lg: 8px;
@@ -194,11 +276,13 @@ table {
 
 :root {
   /* Sombra */
+
   --box-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
   --box-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.16);
   --box-shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.19);
 
   /* Transiciones */
+
   --transition-fast: 0.2s ease-in-out;
   --transition-normal: 0.4s ease-in-out;
   --transition-slow: 0.6s ease-in-out;
