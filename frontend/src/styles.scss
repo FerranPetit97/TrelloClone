@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* Reset HTML */
 html,
 body,
@@ -114,6 +118,11 @@ img {
   max-width: 100%;
   height: auto;
   object-fit: contain;
+}
+
+svg,
+img {
+  display: inline;
 }
 
 article,

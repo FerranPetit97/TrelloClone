@@ -1,17 +1,17 @@
 {
-  "vsicons.presets.angular": true,
   "workbench.colorCustomizations": {
-    "titleBar.activeBackground": "#007c80",
+    "titleBar.activeBackground": "#130080",
     "titleBar.activeForeground": "#c2c2c2",
-    "statusBar.background": "#007c80",
+    "statusBar.background": "#130080",
     "statusBar.foreground": "#c2c2c2",
     "sideBarSectionHeader.background": "#1E1E1E", // Color del encabezado de las secciones de la barra lateral
     "sideBarTitle.foreground": "#1E1E1E", // Color del título de la barra lateral
-    "activityBar.background": "#007c80", // Color de la barra de actividad (donde están los iconos de Explorador, Búsqueda, etc.)
+    "activityBar.background": "#130080", // Color de la barra de actividad (donde están los iconos de Explorador, Búsqueda, etc.)
     "activityBar.foreground": "#1E1E1E",
     "activityBar.inactiveForeground": "#c2c2c2", // Color de los íconos inactivos
-    "activityBar.activeBorder": "#007c80", // Color del borde del ícono activo
+    "activityBar.activeBorder": "#130080", // Color del borde del ícono activo
     "activityBarBadge.background": "#c2c2c2", // Color del fondo del badge del ícono
-    "activityBarBadge.foreground": "#003638" // Color del texto del badge del ícono
-  }
+    "activityBarBadge.foreground": "#060025" // Color del texto del badge del ícono
+  },
+  "workbench.iconTheme": "vscode-icons"
 }

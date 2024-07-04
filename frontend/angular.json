@@ -96,6 +96,12 @@
               }
             ],
             "styles": ["src/styles.scss"],
+            "postcssOptions": {
+              "plugins": {
+                "tailwindcss": {},
+                "autoprefixer": {}
+              }
+            },
             "scripts": []
           }
         }

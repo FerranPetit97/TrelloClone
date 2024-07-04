@@ -17,6 +17,8 @@ import { RouterModule, Router, ActivatedRoute } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { User, UsersService } from 'src/services/users/users.service';
 
+//TODO: Minibug al refrescar en boards aparece la página de login durante un momento.
+
 @Component({
   selector: 'app-initial-form',
   templateUrl: './initial-form.component.html',
@@ -48,12 +50,9 @@ export class InitialFormComponent implements OnInit, OnDestroy {
     private readonly usersService: UsersService
   ) {
     this.initialForm = this.formBuilder.group({
-      email: [
-        null,
-        [Validators.required, Validators.minLength(4), Validators.email],
-      ],
-      password: [null, [Validators.required, Validators.minLength(4)]],
-      repeatPassword: [null, [Validators.minLength(4)]],
+      email: [null, [Validators.required, Validators.email]],
+      password: [null, [Validators.required]],
+      repeatPassword: [null],
     });
     this.activatedRoute.queryParams.subscribe((params) => {
       this.signUpAttempt = params['infoCode'];
@@ -107,7 +106,7 @@ export class InitialFormComponent implements OnInit, OnDestroy {
   }
 
   onFocus(field: string): void {
-    if (field === 'mail') {
+    if (field === 'email') {
       if (this.formStep === 1) {
         this.isEmailValid = false;
         this.formStep--;

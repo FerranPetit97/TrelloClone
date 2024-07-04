@@ -106,7 +106,7 @@ export class AuthService {
   logout() {
     this.clearToken();
     this.userSubject.next(null);
-    this.router.navigate(['/login']);
+    // this.router.navigate(['/login']);
   }
 
   isLoggedIn(): boolean {

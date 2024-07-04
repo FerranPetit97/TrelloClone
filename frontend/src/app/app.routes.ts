@@ -17,6 +17,6 @@ export const routes: Routes = [
   {
     path: ':user/boards',
     component: BoardsComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
 ];
