@@ -1,69 +1,140 @@
 <div class="page">
   <section class="container">
-    <img src="../../../assets/logos/trello-color.svg" alt="Trello logo" />
+    <img src="../../assets/logos/trello-color.svg" alt="Trello logo" />
     <h4>
-      {{ location === "signin" ? "Regístrarte" : "Inicia sessión" }} para
+      {{ location === "signup" ? "Regístrarte" : "Inicia sessión" }} para
       continuar
     </h4>
-    <form [formGroup]="initialForm" (ngSubmit)="onSubmit()">
-      <input
-        [ngClass]="{
-          error: submitted && form['mail'].errors && !isMailFocused,
-        }"
-        (focus)="onFocus('email')"
-        (blur)="onBlur('email')"
-        type="text"
-        name="mail"
-        placeholder="Introducir tu correo electrónico"
-        required
-        formControlName="mail"
-      />
-      <div class="info">
-        @if(submitted && form['mail'].errors) {
-        <span class="error-text"
-          >Indica una dirección de correo electrónico</span
+    @if(submitted && isPasswordValid){
+    <p class="warning">
+      Hace poco hemos hecho cambios en la página de inicio de sesión. Si tienes
+      problemas al iniciar sesión, <a href="#">restablece la contraseña</a>.
+    </p>
+    } @if(emailExist){
+    <p class="signUp-info-parrafraph">
+      Parece que ya tienes una cuenta asociada con esta dirección de correo
+      electrónico. Inicia sesión o bien restablece la contraseña si la has
+      olvidado.
+    </p>
+    }
+    <form [formGroup]="initialForm">
+      <label>
+        <input
+          [ngClass]="{
+            error: formStep === 0 && !isEmailFocused && isEmailValidSubmitted,
+            valid: formStep === 1 && form['email'].value
+          }"
+          (focus)="onFocus('email')"
+          (blur)="onBlur('email')"
+          type="text"
+          name="email"
+          placeholder="Introducir tu correo electrónico"
+          required
+          formControlName="email"
+        />
+        @if(formStep === 1 && form['email'].valid) {
+        <svg
+          class="icon"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          role="presentation"
         >
-        } @if(location === 'signin'){
+          <path
+            d="M4.02 19.23a1 1 0 001.18 1.18l3.81-.78-4.21-4.21-.78 3.81zM19.844 6.707l-2.12-2.122A1.997 1.997 0 0016.308 4c-.512 0-1.024.195-1.415.585l-9.757 9.758 4.95 4.95 9.757-9.758a2 2 0 000-2.828z"
+            fill="currentColor"
+            fill-rule="evenodd"
+          ></path>
+        </svg>
+        }
+      </label>
+      @if(formStep === 1 && form['email'].valid && !isEmailFocused) {
+      <label>
+        <input
+          [ngClass]="{
+            error: submitted && form['password'].errors && !isPasswordFocused
+          }"
+          (focus)="onFocus('password')"
+          (blur)="onBlur('password')"
+          type="password"
+          name="password"
+          placeholder="Introducir contraseña"
+          required
+          formControlName="password"
+        />
+      </label>
+      } @if(formStep === 1 && form['email'].valid && !isEmailFocused && location
+      === 'signup') {
+      <label>
+        <input
+          [ngClass]="{
+            error:
+              submitted && form['repeatPassword'].errors && !isPasswordFocused
+          }"
+          (focus)="onFocus('password')"
+          (blur)="onBlur('password')"
+          type="password"
+          name="repeatPassword"
+          placeholder="Repite la contraseña"
+          required
+          formControlName="repeatPassword"
+        />
+      </label>
+      }
+      <div class="info">
+        @if(formStep === 0 && form['email'].errors && isEmailValidSubmitted) {
+        <p class="error-text">Indica una dirección de correo electrónico</p>
+        } @if(formStep === 1 && submitted && form['password'].errors) {
+        <p class="error-text">Indica tu contraseña</p>
+        }@if(formStep === 1 && submitted && isPasswordNotEqual) {
+        <p class="error-text">Las contraseñas deben ser iguales</p>
+        } @if(location === 'signup'){
         <p>
           Al registrarme, acepto las <a href="#">Condiciones del servicio</a> de
           Atlassian Cloud y su <a href="#">Política de privacidad</a>.
         </p>
         }
       </div>
-      <button [style]="isError()" type="submit">
-        {{ location === "signin" ? "Registrarse" : "Continuar" }}
+      @if(formStep === 0 && !isEmailValid) {
+      <button (click)="stepsForm()" [style]="isError()">
+        {{ location === "signup" ? "Registrarse" : "Continuar" }}
       </button>
+      } @if(formStep === 1 && form['email'].valid) {
+      <button (click)="onSubmit()" [style]="isError()" type="submit">
+        Iniciar Sesión
+      </button>
+      }
     </form>
     <p>O continúa con:</p>
     <div class="social-buttons">
       <button>
         <img
-          src="../../../assets/logos/Google__G__logo.png"
+          src="../../assets/logos/Google__G__logo.png"
           alt="Google logo"
         /><span>Google</span>
       </button>
       <button>
         <img
-          src="../../../assets/logos/Microsoft_logo.png"
+          src="../../assets/logos/Microsoft_logo.png"
           alt="Microsoft logo"
         /><span>Microsoft</span>
       </button>
       <button>
         <img
-          src="../../../assets/logos/Apple_logo_black.png"
+          src="../../assets/logos/Apple_logo_black.png"
           alt="Apple logo"
         /><span>Apple</span>
       </button>
       <button>
-        <img src="../../../assets/logos/Slack_logo.png" alt="Slack logo" /><span
+        <img src="../../assets/logos/Slack_logo.png" alt="Slack logo" /><span
           >Slack</span
         >
       </button>
     </div>
     <p>
-      @if(location !== 'signin'){
+      @if(location !== 'signup'){
       <a href="#">¿No puedes iniciar sesión?</a> |
-      <a routerLink="/signin">Crear una cuenta</a>
+      <a routerLink="/signup">Crear una cuenta</a>
       }@else{
       <a [routerLink]="['/login']"
         >¿Ya tienes una cuenta de Atlassian? Iniciar sesión</a
@@ -72,10 +143,10 @@
     </p>
     <div class="footer">
       <span
-        ><img src="../../../assets/logos/Atlassian.svg" alt="Atlasian logo"
+        ><img src="../../assets/logos/Atlassian.svg" alt="Atlasian logo"
       /></span>
       <p>Una cuenta para Trello, Jira, Conluence y <a href="#">más</a>.</p>
-      @if(location !== 'signin'){
+      @if(location !== 'signup'){
       <p>Política de privacidad | Aviso de usuario</p>
       }
       <p>
@@ -85,12 +156,9 @@
       </p>
     </div>
   </section>
+  <img src="../../assets/images/auth-figure-left.svg" alt="Trello image left" />
   <img
-    src="../../../assets/images/auth-figure-left.svg"
-    alt="Trello image left"
-  />
-  <img
-    src="../../../assets/images/auth-figure-right.svg"
+    src="../../assets/images/auth-figure-right.svg"
     alt="Trello image right"
   />
 </div>

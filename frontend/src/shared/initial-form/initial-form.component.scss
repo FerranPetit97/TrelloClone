@@ -36,6 +36,20 @@
     color: rgb(23, 43, 77);
     z-index: 10;
 
+    .warning {
+      background-color: var(--warning-bg-color);
+      padding: var(--space-200, 16px);
+      word-break: break-word;
+      border-radius: var(--border-radius, 3px);
+    }
+
+    .signUp-info-parrafraph {
+      text-align: center;
+      font-size: 13px;
+      margin-bottom: 24px;
+      font-weight: normal;
+    }
+
     h4 {
       padding-top: 24px;
       margin-bottom: 16px;
@@ -75,35 +89,51 @@
       flex-direction: column;
       width: 100%;
 
-      input {
-        padding: 0.7rem 0.575rem;
-        border-radius: 3px;
-        justify-content: space-between;
-        margin-bottom: 8px;
-        margin-top: var(--space-100, 8px);
-        border: 2px solid var(--border-input, #dfe1e6);
-        background-color: transparent;
-        font-size: 14px;
-        transition:
-          background-color 0.2s ease-in-out 0s,
-          border-color 0.2s ease-in-out;
+      label {
+        input {
+          width: 100%;
+          padding: 0.7rem 0.575rem;
+          border-radius: 3px;
+          justify-content: space-between;
+          margin-bottom: 8px;
+          margin-top: var(--space-100, 8px);
+          border: 2px solid var(--border-input, #dfe1e6);
+          background-color: transparent;
+          font-size: 14px;
+          transition:
+            background-color 0.2s ease-in-out 0s,
+            border-color 0.2s ease-in-out;
 
-        &:hover {
-          background-color: var(--background-input-hovered, #ebecf0);
+          &:hover {
+            background-color: var(--bg-input-hovered, #ebecf0);
+          }
+
+          &:focus {
+            outline: 1px solid var(--border-focused, #2684ff);
+            border-color: var(--border-focused, #2684ff);
+          }
+
+          &:focus-within {
+            border-color: var(--border-focused, #2684ff);
+          }
+
+          &.error {
+            outline: 1px solid var(--error-color, #de350b);
+            border-color: var(--border-danger, #de350b);
+          }
+
+          &.valid {
+            cursor: pointer;
+            background-color: transparent;
+            outline: var(--white);
+            border-color: var(--white);
+          }
         }
 
-        &:focus {
-          outline: 1px solid var(--border-focused, #2684ff);
-          border-color: var(--border-focused, #2684ff);
-        }
-
-        &:focus-within {
-          border-color: var(--border-focused, #2684ff);
-        }
-
-        &.error {
-          outline: 1px solid var(--error-color, #de350b);
-          border-color: var(--border-danger, #de350b);
+        .icon {
+          position: absolute;
+          transform: translate(-32px, 17px);
+          pointer-events: none;
         }
       }
 

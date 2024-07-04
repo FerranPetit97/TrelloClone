@@ -1,1 +1,5 @@
-<app-initial-form location="login"></app-initial-form>
+<app-initial-form
+  (loginFormSubmit)="onFormSubmit($event)"
+  location="login"
+  [isPasswordValid]="isPasswordValid"
+></app-initial-form>

@@ -86,6 +86,7 @@ video {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
+  scroll-behavior: smooth;
 }
 a {
   text-decoration: none;
@@ -199,7 +200,7 @@ table {
 
   /* Inputs */
 
-  --background-input-hovered: #f7f8f9;
+  --bg-input-hovered: #f7f8f9;
   --border-input: #091e4224;
   --border-focused: #388bff;
 
@@ -209,6 +210,7 @@ table {
   --error-color: #ae2e24;
   --border-danger: #e2483d;
   --warning-color: #ffc107;
+  --warning-bg-color: #fff7d6;
   --info-color: #17a2b8;
 }
 
